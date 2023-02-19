@@ -2,6 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { CurrencyContext } from "../contexts/CurrencyContextProvider";
+import { pretifyNumber } from "./Card";
 
 const CoinContainer = styled.div`
   display: flex;
@@ -35,20 +36,12 @@ const CurrentPrice = styled.div`
   font-size: 2.2rem;
 `;
 
-const formattedCurrency = (num, code, currency) => {
-  const formatted = num.toLocaleString(code, {
-    style: "currency",
-    currency: currency,
-  });
-  return formatted;
-};
-
 const CarouselItem = ({ coin }) => {
-  const { currency, code } = useContext(CurrencyContext);
+  const { code, symbol } = useContext(CurrencyContext);
 
   const isProfit = coin?.price_change_percentage_24h >= 0;
   return (
-    <Link to={`coin/${coin?.id}`}>
+    <Link to={`coins/${coin?.id}`}>
       <CoinContainer>
         <ImageContainer>
           <CoinImage src={coin?.image} alt={coin?.name} />
@@ -60,7 +53,8 @@ const CarouselItem = ({ coin }) => {
           </PercentageChange>
         </CoinInfo>
         <CurrentPrice>
-          {formattedCurrency(coin?.current_price, code, currency)}
+          {symbol}
+          {pretifyNumber(coin?.current_price, code)}
         </CurrentPrice>
       </CoinContainer>
     </Link>

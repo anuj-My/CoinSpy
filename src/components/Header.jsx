@@ -7,6 +7,7 @@ import NavigationLinks from "./NavigationLinks";
 const HeaderContainer = styled.header`
   width: 100%;
   position: fixed;
+  top: 0;
   height: 10rem;
   background-color: #424b54;
   color: #f8f9fa;

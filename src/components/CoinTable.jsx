@@ -4,7 +4,8 @@ import axios from "axios";
 import { CoinList } from "../api/coinGeckoApi";
 import { CurrencyContext } from "../contexts/CurrencyContextProvider";
 
-import CoinItem from "./CoinItem";
+import { SearchContext } from "../contexts/SearchContextProvider";
+import TableItem from "./TableItem";
 
 const CoinTableContainer = styled.section`
   width: 100%;
@@ -19,23 +20,23 @@ const TableHead = styled.div`
   display: flex;
   justify-content: space-between;
   color: #f0f0ff;
-  background-color: rgba(255, 255, 255, 0.1);
-  margin-bottom: 2rem;
+  background-color: #6e46ff;
+  margin-bottom: 2.3rem;
   font-size: 1.6rem;
   border-radius: 1rem;
   padding: 1.6rem 2rem;
+  /* text-align: left; */
 `;
 const CoinHead = styled.h4``;
 const PriceHead = styled.h4``;
 const TimeHead = styled.h4``;
 const MarketCapHead = styled.h4``;
 
-const Coins = styled.div``;
-
 const CoinTable = () => {
   const [coinList, setCoinList] = useState([]);
   const { currency } = useContext(CurrencyContext);
-  console.log(coinList);
+  const { searchInput } = useContext(SearchContext);
+  // console.log(coinList);
 
   useEffect(() => {
     getCoinList();
@@ -46,8 +47,17 @@ const CoinTable = () => {
     setCoinList(data);
   };
 
-  const coinItemMap = coinList.map((coin) => {
-    return <CoinItem coin={coin} key={coin.id} />;
+  const filteredCoins = coinList.filter((coin) => {
+    if (
+      coin?.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+      coin?.symbol.toLowerCase().includes(searchInput.toLowerCase())
+    ) {
+      return coin;
+    }
+  });
+
+  const coinItemMap = filteredCoins.map((coin) => {
+    return <TableItem item={coin} key={coin.id} />;
   });
 
   return (
@@ -55,10 +65,10 @@ const CoinTable = () => {
       <TableHead>
         <CoinHead>Coin</CoinHead>
         <PriceHead>Price</PriceHead>
-        <TimeHead>One Day</TimeHead>
+        <TimeHead>24hrs Change</TimeHead>
         <MarketCapHead>Market Cap</MarketCapHead>
       </TableHead>
-      <Coins>{coinItemMap}</Coins>
+      {coinItemMap}
     </CoinTableContainer>
   );
 };

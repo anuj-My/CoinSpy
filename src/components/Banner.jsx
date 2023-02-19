@@ -26,7 +26,7 @@ const BannerContainer = styled.section`
     content: "";
     background-image: linear-gradient(
       360deg,
-      rgba(66, 75, 84, 0.979),
+      rgb(66, 75, 84),
       rgba(66, 75, 84, 0.568),
       rgba(66, 75, 84, 0.286)
     );
@@ -75,6 +75,7 @@ const Banner = () => {
   useEffect(() => {
     getTrendingCoins();
   }, [currency]);
+
   const getTrendingCoins = async () => {
     const { data } = await axios.get(TrendingCoins(currency));
     setTrendingCoins(data);

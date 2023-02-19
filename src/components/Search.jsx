@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { SearchContext } from "../contexts/SearchContextProvider";
+
 import styled from "styled-components";
 import { BiSearchAlt } from "react-icons/bi";
 
@@ -40,9 +43,21 @@ const Button = styled.button`
 `;
 
 const Search = () => {
+  const { searchInput, setSearchInput } = useContext(SearchContext);
+
+  console.log(searchInput);
+  const searchHandler = (e) => {
+    setSearchInput(e.target.value);
+  };
+  
   return (
     <Form>
-      <SearchInput type="text" placeholder="Search for a crypto currency..." />
+      <SearchInput
+        type="text"
+        value={searchInput}
+        placeholder="Search for a crypto currency..."
+        onChange={searchHandler}
+      />
       <Button type="submit">
         <BiSearchAlt />
       </Button>
