@@ -74,6 +74,7 @@ const Banner = () => {
 
   useEffect(() => {
     getTrendingCoins();
+    // eslint-disable-next-line
   }, [currency]);
 
   const getTrendingCoins = async () => {

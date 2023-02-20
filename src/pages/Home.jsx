@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import Banner from "../components/Banner";
-import CoinTable from "../components/CoinTable";
-import Search from "../components/Search";
 import SearchCoinList from "../container/SearchCoinList";
+
+const Container = styled.div``;
 
 const Home = () => {
   return (
-    <div>
+    <Container>
       <Banner />
       <SearchCoinList />
-    </div>
+    </Container>
   );
 };
 

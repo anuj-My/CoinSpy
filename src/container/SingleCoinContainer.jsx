@@ -21,7 +21,6 @@ const ContainerInfo = styled.div`
   border-radius: 1rem;
   gap: 1rem;
   background-color: #cac7ff27;
-
   padding: 4rem 2rem;
 `;
 
@@ -131,6 +130,7 @@ const SingleCoinContainer = () => {
               <MarketData>
                 Current Price:{" "}
                 <span>
+                  {symbol}
                   {pretifyNumber(
                     currency === "INR"
                       ? coinDetail?.market_data?.current_price?.inr
@@ -142,6 +142,7 @@ const SingleCoinContainer = () => {
               <MarketData>
                 Marker Cap:{" "}
                 <span>
+                  {symbol}
                   {pretifyNumber(
                     currency === "INR"
                       ? coinDetail?.market_data?.market_cap?.inr
@@ -153,6 +154,7 @@ const SingleCoinContainer = () => {
               <MarketData>
                 Price Change 24h:{" "}
                 <span>
+                  {symbol}
                   {pretifyNumber(
                     currency === "INR"
                       ? coinDetail?.market_data?.price_change_24h_in_currency
@@ -166,18 +168,21 @@ const SingleCoinContainer = () => {
               <MarketData>
                 Total Supply:{" "}
                 <span>
+                  {symbol}
                   {pretifyNumber(coinDetail?.market_data?.total_supply, code)}
                 </span>
               </MarketData>
               <MarketData>
                 Max Supply:{" "}
                 <span>
+                  {symbol}
                   {pretifyNumber(coinDetail?.market_data?.max_supply, code)}
                 </span>
               </MarketData>
               <MarketData>
                 Total Volume:{" "}
                 <span>
+                  {symbol}
                   {pretifyNumber(
                     currency === "INR"
                       ? coinDetail?.market_data?.total_volume?.inr

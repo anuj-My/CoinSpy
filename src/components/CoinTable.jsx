@@ -40,6 +40,7 @@ const CoinTable = () => {
 
   useEffect(() => {
     getCoinList();
+    // eslint-disable-next-line
   }, []);
 
   const getCoinList = async () => {
@@ -52,6 +53,7 @@ const CoinTable = () => {
       coin?.name.toLowerCase().includes(searchInput.toLowerCase()) ||
       coin?.symbol.toLowerCase().includes(searchInput.toLowerCase())
     ) {
+      // eslint-disable-next-line 
       return coin;
     }
   });

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
-import styled from "styled-components";
 import { HistoricalChart } from "../api/coinGeckoApi";
 import { CurrencyContext } from "../contexts/CurrencyContextProvider";
 import { Line } from "react-chartjs-2";
