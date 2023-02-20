@@ -26,6 +26,7 @@ ChartJS.register(
 
 const Chart = ({ id }) => {
   const [historicalData, setHistoricalData] = useState([]);
+  // eslint-disable-next-line
   const [days, setDays] = useState(1);
   const { currency } = useContext(CurrencyContext);
 

@@ -48,12 +48,12 @@ const CoinTable = () => {
     setCoinList(data);
   };
 
+  // eslint-disable-next-line
   const filteredCoins = coinList.filter((coin) => {
     if (
       coin?.name.toLowerCase().includes(searchInput.toLowerCase()) ||
       coin?.symbol.toLowerCase().includes(searchInput.toLowerCase())
     ) {
-      // eslint-disable-next-line 
       return coin;
     }
   });
