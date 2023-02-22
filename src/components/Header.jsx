@@ -3,6 +3,8 @@ import { useContext } from "react";
 import { CurrencyContext } from "../contexts/CurrencyContextProvider";
 import Logo from "./Logo";
 import NavigationLinks from "./NavigationLinks";
+import Button from "./Button";
+import { googleSignInWithPopup } from "../api/firebase";
 
 const HeaderContainer = styled.header`
   width: 100%;
@@ -33,6 +35,10 @@ const LoginContainer = styled.div`
 
 const Header = () => {
   const { currency, setCurrency } = useContext(CurrencyContext);
+
+  const signInWithGoogle = async () => {
+    await googleSignInWithPopup();
+  };
   return (
     <HeaderContainer>
       <Logo title="CoinSpy" />
@@ -48,7 +54,16 @@ const Header = () => {
             <CurrencyOption value={"INR"}>INR</CurrencyOption>
           </SelectCurrency>
         </CurrencyContainer>
-        <LoginContainer>login</LoginContainer>
+        <LoginContainer>
+          <Button
+            options={{
+              title: "SignIn With Google",
+              color: "white",
+              backgroundColor: "black",
+              clickHandler: signInWithGoogle,
+            }}
+          />
+        </LoginContainer>
       </CurrencyAndLogin>
     </HeaderContainer>
   );

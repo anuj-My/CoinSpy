@@ -6,6 +6,7 @@ import { CurrencyContext } from "../contexts/CurrencyContextProvider";
 
 import { SearchContext } from "../contexts/SearchContextProvider";
 import TableItem from "./TableItem";
+import Pagination from "./Pagination";
 
 const CoinTableContainer = styled.section`
   width: 100%;
@@ -36,7 +37,12 @@ const CoinTable = () => {
   const [coinList, setCoinList] = useState([]);
   const { currency } = useContext(CurrencyContext);
   const { searchInput } = useContext(SearchContext);
-  // console.log(coinList);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  // eslint-disable-next-line
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+
+  const lastPage = coinList.length / itemsPerPage;
 
   useEffect(() => {
     getCoinList();
@@ -58,9 +64,14 @@ const CoinTable = () => {
     }
   });
 
-  const coinItemMap = filteredCoins.map((coin) => {
-    return <TableItem item={coin} key={coin.id} />;
-  });
+  const coinItemMap = filteredCoins
+    .slice(
+      currentPage * itemsPerPage - itemsPerPage,
+      currentPage * itemsPerPage
+    )
+    .map((coin) => {
+      return <TableItem item={coin} key={coin.id} />;
+    });
 
   return (
     <CoinTableContainer>
@@ -71,6 +82,13 @@ const CoinTable = () => {
         <MarketCapHead>Market Cap</MarketCapHead>
       </TableHead>
       {coinItemMap}
+      {CoinList.length > 0 && (
+        <Pagination
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+          lastPage={lastPage}
+        />
+      )}
     </CoinTableContainer>
   );
 };

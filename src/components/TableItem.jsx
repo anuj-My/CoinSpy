@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { CurrencyContext } from "../contexts/CurrencyContextProvider";
 import { pretifyNumber } from "./Card";
 import { Link } from "react-router-dom";
+import { HiArrowTrendingUp } from "react-icons/hi2";
+import { HiArrowTrendingDown } from "react-icons/hi2";
 
 const CoinListItem = styled(Link)`
   display: flex;
@@ -15,6 +17,7 @@ const CoinListItem = styled(Link)`
   border-radius: 1rem;
   padding: 1.6rem 2rem;
   /* text-align: left; */
+
   &:hover {
     transform: scale(1.1);
     margin-bottom: 3px;
@@ -72,6 +75,7 @@ const TableItem = ({ item }) => {
         {pretifyNumber(item?.current_price, code)}
       </Price>
       <Time isProfit={isProfit}>
+        {isProfit ? <HiArrowTrendingUp /> : <HiArrowTrendingDown />}
         {isProfit && "+"}
         {item?.price_change_percentage_24h.toFixed(2)}%
       </Time>

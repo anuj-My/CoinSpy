@@ -6,6 +6,9 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { SingleCoin } from "../api/coinGeckoApi";
 import Chart from "../components/Chart";
+import { HistoricalChart } from "../api/coinGeckoApi";
+import { chartDays } from "../data";
+import Button from "../components/Button";
 
 const Container = styled.div`
   width: 90%;
@@ -42,6 +45,16 @@ const box = styled.div`
 const ChartContainer = styled(box)`
   height: 61rem;
   font-size: 2rem;
+`;
+
+const ChartWrapper = styled.div`
+  height: 85%;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.6rem;
 `;
 
 const CoinSummary = styled(box)`
@@ -93,12 +106,26 @@ const SingleCoinContainer = () => {
 
   const { currency, code, symbol } = useContext(CurrencyContext);
 
-  console.log(coinDetail);
+  const [historicalData, setHistoricalData] = useState([]);
+  // eslint-disable-next-line
+  const [days, setDays] = useState(1);
+
   useEffect(() => {
     getSingleCoin();
     window.scrollTo(0, 0);
     // eslint-disable-next-line
   }, [id]);
+
+  useEffect(() => {
+    getHistorialData();
+    // eslint-disable-next-line
+  }, [id, days]);
+
+  const getHistorialData = async () => {
+    const { data } = await axios(HistoricalChart(id, days, currency));
+
+    setHistoricalData(data.prices);
+  };
 
   const getSingleCoin = async () => {
     const { data } = await axios.get(SingleCoin(id));
@@ -111,9 +138,24 @@ const SingleCoinContainer = () => {
 
       <ContainerInfo>
         <ChartContainer>
-          {/* chart */}
-          <Chart id={id} />
-          {/* button */}
+          <ChartWrapper>
+            <Chart days={days} historicalData={historicalData} />
+          </ChartWrapper>
+          <ButtonContainer>
+            {chartDays.map(({ label, value }, index) => {
+              return (
+                <Button
+                  options={{
+                    title: label,
+                    color: "white",
+                    backgroundColor: "black",
+                    clickHandler: () => setDays(value),
+                  }}
+                  key={index}
+                />
+              );
+            })}
+          </ButtonContainer>
         </ChartContainer>
         <CoinInfoContainer>
           <CoinSummary>

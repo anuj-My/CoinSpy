@@ -1,8 +1,6 @@
-import axios from "axios";
-import { useState, useEffect, useContext } from "react";
-import { HistoricalChart } from "../api/coinGeckoApi";
-import { CurrencyContext } from "../contexts/CurrencyContextProvider";
+import { useContext } from "react";
 import { Line } from "react-chartjs-2";
+import { CurrencyContext } from "../contexts/CurrencyContextProvider";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -24,27 +22,11 @@ ChartJS.register(
   Legend
 );
 
-const Chart = ({ id }) => {
-  const [historicalData, setHistoricalData] = useState([]);
-  // eslint-disable-next-line
-  const [days, setDays] = useState(1);
+const Chart = ({ historicalData, days }) => {
   const { currency } = useContext(CurrencyContext);
-
-  console.log(historicalData);
-
-  useEffect(() => {
-    getHistorialData();
-    // eslint-disable-next-line
-  }, [id, days]);
-
-  const getHistorialData = async () => {
-    const { data } = await axios(HistoricalChart(id, days, currency));
-
-    setHistoricalData(data.prices);
-  };
-
   /////////// Chartjs///////////////////
   ChartJS.defaults.color = "white";
+
   const data = {
     labels: historicalData.map((coin) => {
       let date = new Date(coin[0]);

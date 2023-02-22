@@ -12,7 +12,7 @@ root.render(
     <BrowserRouter>
       <CurrencyContextProvider>
         <SearchContextProvider>
-          <App />
+            <App />
         </SearchContextProvider>
       </CurrencyContextProvider>
     </BrowserRouter>
