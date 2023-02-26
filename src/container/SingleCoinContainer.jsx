@@ -8,7 +8,7 @@ import { SingleCoin } from "../api/coinGeckoApi";
 import Chart from "../components/Chart";
 import { HistoricalChart } from "../api/coinGeckoApi";
 import { chartDays } from "../data";
-import Button from "../components/Button";
+import SelectedButton from "../components/SelectedButton";
 
 const Container = styled.div`
   width: 90%;
@@ -144,12 +144,13 @@ const SingleCoinContainer = () => {
           <ButtonContainer>
             {chartDays.map(({ label, value }, index) => {
               return (
-                <Button
+                <SelectedButton
                   options={{
                     title: label,
                     color: "white",
                     backgroundColor: "black",
                     clickHandler: () => setDays(value),
+                    isSelected: value === days,
                   }}
                   key={index}
                 />

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Btn = styled.button`
-  padding: 2rem 3rem;
+  padding: 1.4rem 2rem;
   font: 1.6rem;
   color: white;
   background-color: #538dd8;
@@ -11,13 +11,8 @@ const Btn = styled.button`
   border: none;
 `;
 
-const Button = ({ options }) => {
-  const { title, color, backgroundColor, clickHandler } = options;
-  return (
-    <Btn color={color} backgroundColor={backgroundColor} onClick={clickHandler}>
-      {title}
-    </Btn>
-  );
+const Button = ({ title, ...otherProps }) => {
+  return <Btn {...otherProps}>{title}</Btn>;
 };
 
 export default Button;

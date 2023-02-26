@@ -3,8 +3,13 @@ import { useContext } from "react";
 import { CurrencyContext } from "../contexts/CurrencyContextProvider";
 import Logo from "./Logo";
 import NavigationLinks from "./NavigationLinks";
+import CustomLink from "./CustomLink";
 import Button from "./Button";
-import { googleSignInWithPopup } from "../api/firebase";
+import {
+  googleSignInWithPopup,
+  createUserDocumentFromAuth,
+} from "../api/firebase";
+import SelectOptions from "./SelectOptions";
 
 const HeaderContainer = styled.header`
   width: 100%;
@@ -21,6 +26,12 @@ const HeaderContainer = styled.header`
   box-shadow: 0px 0.5rem 1rem #1d1d1d;
 `;
 
+const LinksContainer = styled.div`
+  display: flex;
+  gap: 5rem;
+  align-items: center;
+`;
+
 const CurrencyAndLogin = styled.div`
   display: flex;
   gap: 2rem;
@@ -30,20 +41,28 @@ const CurrencyContainer = styled.div``;
 const SelectCurrency = styled.select``;
 const CurrencyOption = styled.option``;
 const LoginContainer = styled.div`
-  font-size: 2rem;
+  font-size: 1.6rem;
+  a:not(:last-child) {
+    margin-right: 2rem;
+  }
 `;
 
 const Header = () => {
   const { currency, setCurrency } = useContext(CurrencyContext);
 
   const signInWithGoogle = async () => {
-    await googleSignInWithPopup();
+    const { user } = await googleSignInWithPopup();
+    console.log(user);
+
+    createUserDocumentFromAuth(user);
   };
+
   return (
     <HeaderContainer>
-      <Logo title="CoinSpy" />
-
-      <NavigationLinks />
+      <LinksContainer>
+        <Logo title="CoinSpy" />
+        <NavigationLinks />
+      </LinksContainer>
       <CurrencyAndLogin>
         <CurrencyContainer>
           <SelectCurrency
@@ -52,17 +71,17 @@ const Header = () => {
           >
             <CurrencyOption value={"USD"}>USD</CurrencyOption>
             <CurrencyOption value={"INR"}>INR</CurrencyOption>
+            <SelectOptions />
           </SelectCurrency>
         </CurrencyContainer>
         <LoginContainer>
-          <Button
-            options={{
-              title: "SignIn With Google",
-              color: "white",
-              backgroundColor: "black",
-              clickHandler: signInWithGoogle,
+          <CustomLink
+            data={{
+              path: "/sign-up",
+              title: "Sign Up",
             }}
           />
+          <Button title="SignIn With Google" onClick={signInWithGoogle} />
         </LoginContainer>
       </CurrencyAndLogin>
     </HeaderContainer>
