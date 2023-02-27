@@ -8,7 +8,10 @@ import {
 } from "../api/firebase";
 
 const Container = styled.div``;
-const Form = styled.form``;
+const Form = styled.form`
+  width: 90%;
+  margin: auto;
+`;
 
 const SignUpForm = () => {
   const defaultInput = {
@@ -20,9 +23,8 @@ const SignUpForm = () => {
 
   const [inputFields, setInputFields] = useState(defaultInput);
 
-  console.log(inputFields);
   const { displayName, email, password, confirmPassword } = inputFields;
-  const ChangeHandler = (e) => {
+  const changeHandler = (e) => {
     const { name, value } = e.target;
     setInputFields({
       ...inputFields,
@@ -40,6 +42,7 @@ const SignUpForm = () => {
         email,
         password
       );
+      console.log(user);
       createUserDocumentFromAuth(user, { displayName });
     } catch (error) {
       console.log(error.message);
@@ -53,7 +56,7 @@ const SignUpForm = () => {
           type="text"
           name="displayName"
           value={displayName}
-          onChange={ChangeHandler}
+          onChange={changeHandler}
           required
         />
         <FormInput
@@ -61,7 +64,7 @@ const SignUpForm = () => {
           type="email"
           name="email"
           value={email}
-          onChange={ChangeHandler}
+          onChange={changeHandler}
           required
         />
         <FormInput
@@ -69,7 +72,7 @@ const SignUpForm = () => {
           type="password"
           name="password"
           value={password}
-          onChange={ChangeHandler}
+          onChange={changeHandler}
           required
         />
         <FormInput
@@ -77,7 +80,7 @@ const SignUpForm = () => {
           type="password"
           name="confirmPassword"
           value={confirmPassword}
-          onChange={ChangeHandler}
+          onChange={changeHandler}
           required
         />
 

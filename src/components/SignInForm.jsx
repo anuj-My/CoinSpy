@@ -1,11 +1,78 @@
 import styled from "styled-components";
+import { useState } from "react";
+import FormInput from "./FormInput";
+import Button from "./Button";
+import {
+  googleSignInWithPopup,
+  createUserDocumentFromAuth,
+} from "../api/firebase";
 
 const Container = styled.div``;
-const Form = styled.form``;
+const Form = styled.form`
+  width: 90%;
+  margin: auto;
+`;
+
+const BtnContainer = styled.div`
+  button:not(:last-child) {
+    margin-right: 1rem;
+  }
+`;
 const SignInForm = () => {
+  const defaultInputs = {
+    email: "",
+    password: "",
+  };
+
+  const [inputFields, setInputFields] = useState(defaultInputs);
+
+  console.log(inputFields);
+  const { email, password } = inputFields;
+
+  const changeHandler = (e) => {
+    const { name, value } = e.target;
+
+    setInputFields({
+      ...inputFields,
+      [name]: value,
+    });
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+  };
+
+  const signInWithGoogle = async () => {
+    const { user } = await googleSignInWithPopup();
+    console.log(user);
+
+    createUserDocumentFromAuth(user);
+  };
   return (
     <Container>
-      <Form></Form>
+      <Form onSubmit={submitHandler}>
+        <FormInput
+          label="Email"
+          type="email"
+          name="email"
+          value={email}
+          onChange={changeHandler}
+          required
+        />
+        <FormInput
+          label="Password"
+          type="password"
+          name="password"
+          value={password}
+          onChange={changeHandler}
+          required
+        />
+
+        <BtnContainer>
+          <Button title="Sign In" type="submit" />
+          <Button title="SignIn With Google" onClick={signInWithGoogle} />
+        </BtnContainer>
+      </Form>
     </Container>
   );
 };

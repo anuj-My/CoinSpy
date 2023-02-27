@@ -4,12 +4,7 @@ import { CurrencyContext } from "../contexts/CurrencyContextProvider";
 import Logo from "./Logo";
 import NavigationLinks from "./NavigationLinks";
 import CustomLink from "./CustomLink";
-import Button from "./Button";
-import {
-  googleSignInWithPopup,
-  createUserDocumentFromAuth,
-} from "../api/firebase";
-import SelectOptions from "./SelectOptions";
+// import SelectOptions from "./SelectOptions";
 
 const HeaderContainer = styled.header`
   width: 100%;
@@ -50,13 +45,6 @@ const LoginContainer = styled.div`
 const Header = () => {
   const { currency, setCurrency } = useContext(CurrencyContext);
 
-  const signInWithGoogle = async () => {
-    const { user } = await googleSignInWithPopup();
-    console.log(user);
-
-    createUserDocumentFromAuth(user);
-  };
-
   return (
     <HeaderContainer>
       <LinksContainer>
@@ -71,7 +59,7 @@ const Header = () => {
           >
             <CurrencyOption value={"USD"}>USD</CurrencyOption>
             <CurrencyOption value={"INR"}>INR</CurrencyOption>
-            <SelectOptions />
+            {/* <SelectOptions /> */}
           </SelectCurrency>
         </CurrencyContainer>
         <LoginContainer>
@@ -81,7 +69,6 @@ const Header = () => {
               title: "Sign Up",
             }}
           />
-          <Button title="SignIn With Google" onClick={signInWithGoogle} />
         </LoginContainer>
       </CurrencyAndLogin>
     </HeaderContainer>

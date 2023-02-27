@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 const Btn = styled.button`
-  padding: 1.4rem 2rem;
+  padding: 1.4rem 2.2rem;
   font: 1.6rem;
   color: white;
-  background-color: #538dd8;
+  background-color: #7474cb;
   border-radius: 1rem;
   cursor: pointer;
   outline: none;
