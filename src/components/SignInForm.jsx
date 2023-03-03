@@ -5,6 +5,7 @@ import Button from "./Button";
 import {
   googleSignInWithPopup,
   createUserDocumentFromAuth,
+  SignInAuthWithEmailAndPassword,
 } from "../api/firebase";
 
 const Container = styled.div``;
@@ -48,6 +49,12 @@ const SignInForm = () => {
 
     createUserDocumentFromAuth(user);
   };
+
+  const signInWithEmailAndPassword = async () => {
+    const { user } = await SignInAuthWithEmailAndPassword(email, password);
+    console.log(user);
+  };
+
   return (
     <Container>
       <Form onSubmit={submitHandler}>
@@ -69,7 +76,11 @@ const SignInForm = () => {
         />
 
         <BtnContainer>
-          <Button title="Sign In" type="submit" />
+          <Button
+            title="Sign In"
+            type="submit"
+            onClick={signInWithEmailAndPassword}
+          />
           <Button title="SignIn With Google" onClick={signInWithGoogle} />
         </BtnContainer>
       </Form>
