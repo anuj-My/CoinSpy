@@ -4,7 +4,10 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Exchanges from "./pages/Exchanges";
 import CoinDetail from "./pages/CoinDetail";
-import SignUpPage from "./pages/SignUpPage";
+import Auth from "./pages/Auth";
+import Dashboard from "./pages/Dashboard";
+import { ProtectedSignUpRoutes } from "./pages/ProtectedRoutes";
+import { ProtectedDashboardRoutes } from "./pages/ProtectedRoutes";
 
 function App() {
   return (
@@ -14,7 +17,13 @@ function App() {
         <Route index element={<Home />} />
         <Route path="exchanges" element={<Exchanges />} />
         <Route path="coins/:id" element={<CoinDetail />} />
-        <Route path="sign-up" element={<SignUpPage />} />
+
+        <Route element={<ProtectedDashboardRoutes />}>
+          <Route path="dashboard" element={<Dashboard />} />
+        </Route>
+        <Route element={<ProtectedSignUpRoutes />}>
+          <Route path="auth" element={<Auth />} />
+        </Route>
         <Route path="/*" element={<h1>Error page</h1>} />
       </Routes>
     </div>

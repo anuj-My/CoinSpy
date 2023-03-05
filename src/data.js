@@ -1,11 +1,15 @@
 export const linksData = [
   {
-    title: "Dashboard",
+    title: "Home",
     path: "/",
   },
   {
     title: "Exchanges",
     path: "/exchanges",
+  },
+  {
+    title: "Dashboard",
+    path: "/dashboard",
   },
 ];
 

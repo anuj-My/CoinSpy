@@ -46,7 +46,7 @@ const SignUpSpan = styled.span`
   flex: 1;
 `;
 
-const SignUpPage = () => {
+const Auth = () => {
   const [toggle, setToggle] = useState(false);
 
   return (
@@ -66,4 +66,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default Auth;

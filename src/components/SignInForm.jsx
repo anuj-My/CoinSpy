@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { useState } from "react";
+import styled from "styled-components";
 import FormInput from "./FormInput";
 import Button from "./Button";
 import {
@@ -27,8 +27,11 @@ const SignInForm = () => {
 
   const [inputFields, setInputFields] = useState(defaultInputs);
 
-  console.log(inputFields);
   const { email, password } = inputFields;
+
+  const resetFormFields = () => {
+    setInputFields(defaultInputs);
+  };
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -45,14 +48,25 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {
     const { user } = await googleSignInWithPopup();
-    console.log(user);
-
-    createUserDocumentFromAuth(user);
+    await createUserDocumentFromAuth(user);
   };
 
   const signInWithEmailAndPassword = async () => {
-    const { user } = await SignInAuthWithEmailAndPassword(email, password);
-    console.log(user);
+    try {
+      await SignInAuthWithEmailAndPassword(email, password);
+      resetFormFields();
+    } catch (error) {
+      switch (error.code) {
+        case "auth/user-not-found":
+          alert("no user associated with this email");
+          break;
+        case "auth/wrong-password":
+          alert("incorrect password for email");
+          break;
+        default:
+          console.log(error);
+      }
+    }
   };
 
   return (
@@ -81,7 +95,11 @@ const SignInForm = () => {
             type="submit"
             onClick={signInWithEmailAndPassword}
           />
-          <Button title="SignIn With Google" onClick={signInWithGoogle} />
+          <Button
+            title="SignIn With Google"
+            type="button"
+            onClick={signInWithGoogle}
+          />
         </BtnContainer>
       </Form>
     </Container>

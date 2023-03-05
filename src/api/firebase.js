@@ -8,6 +8,7 @@ import {
   signOut,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -68,9 +69,7 @@ export const createUserDocumentFromAuth = async (
         createdAt,
         ...additionalInfo,
       });
-    } catch (err) {
-      console.log(`user creating error ${err.message}`);
-    }
+    } catch (err) {}
   }
 
   return userDocRef;
@@ -96,4 +95,10 @@ export const SignOutUser = async () => {
   } catch (error) {
     console.log(error.message);
   }
+};
+
+// auth state observer : listening to the auth changes
+
+export const onAuthStateChangedListener = (callback) => {
+  onAuthStateChanged(auth, callback);
 };
