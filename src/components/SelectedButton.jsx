@@ -9,6 +9,10 @@ const Btn = styled.button`
   cursor: pointer;
   outline: none;
   border: none;
+
+  @media screen and (max-width: 760px) {
+    padding: 1.5rem 2rem;
+  }
 `;
 
 const SelectedButton = ({ options }) => {

@@ -18,6 +18,10 @@ import { firestoreDb } from "../api/firebase";
 const Container = styled.div`
   width: 90%;
   margin: auto;
+
+  @media screen and (max-width: 650px) {
+    width: 99%;
+  }
 `;
 
 const ContainerInfo = styled.div`
@@ -30,6 +34,10 @@ const ContainerInfo = styled.div`
   gap: 1rem;
   background-color: #cac7ff27;
   padding: 4rem 2rem;
+
+  @media screen and (max-width: 1370px) {
+    grid-template-columns: 100%;
+  }
 `;
 
 const CoinInfoContainer = styled.div`
