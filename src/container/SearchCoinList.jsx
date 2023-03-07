@@ -5,11 +5,18 @@ import CoinTable from "../components/CoinTable";
 const Container = styled.section`
   width: 85%;
   margin: 2rem auto;
+
+  @media screen and (max-width: 780px) {
+    width: 95%;
+  }
 `;
 
 const Title = styled.h1`
   font-size: 3rem;
   font-weight: 500;
+  @media screen and (max-width: 550px) {
+    font-size: 2.6rem;
+  }
 `;
 
 const SearchCoinList = () => {

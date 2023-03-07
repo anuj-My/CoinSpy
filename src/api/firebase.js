@@ -35,8 +35,12 @@ const googleProvider = new GoogleAuthProvider();
 // auth
 export const auth = getAuth();
 
+// ----------Database----------
+
 // db
 export const firestoreDb = getFirestore();
+
+// ----------Authentication----------
 
 // Sign in with google
 export const googleSignInWithPopup = () =>

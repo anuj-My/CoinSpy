@@ -2,11 +2,10 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { CurrencyContext } from "../contexts/CurrencyContextProvider";
 import { pretifyNumber } from "./Card";
-import { Link } from "react-router-dom";
 import { HiArrowTrendingUp } from "react-icons/hi2";
 import { HiArrowTrendingDown } from "react-icons/hi2";
 
-const CoinListItem = styled(Link)`
+const CoinListItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,6 +15,7 @@ const CoinListItem = styled(Link)`
   background-color: rgba(255, 255, 255, 0.182);
   border-radius: 1rem;
   padding: 1.6rem 2rem;
+  cursor: pointer;
   /* text-align: left; */
 
   &:hover {
@@ -62,7 +62,7 @@ const TableItem = ({ item }) => {
   const isProfit = item?.price_change_percentage_24h >= 0;
   const { code, symbol } = useContext(CurrencyContext);
   return (
-    <CoinListItem to={`coins/${item?.id}`}>
+    <CoinListItem>
       <Coin>
         <CoinImage src={item?.image} alt={item?.name} />
         <NameAndSymbol>

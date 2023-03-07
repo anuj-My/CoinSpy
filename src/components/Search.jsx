@@ -24,6 +24,10 @@ const SearchInput = styled.input`
   font-size: 2rem;
   color: #cac7ff;
 
+  @media screen and (max-width: 550px) {
+    padding: 1.8rem 1.4rem;
+  }
+
   &::placeholder {
     color: #cac7ff;
   }
@@ -36,9 +40,18 @@ const Button = styled.button`
   background-color: #6e46ff;
   cursor: pointer;
 
+  @media screen and (max-width: 550px) {
+    width: 4rem;
+    height: 4rem;
+  }
+
   svg {
     font-size: 2.5rem;
     color: #cac7ff;
+
+    @media screen and (max-width: 550px) {
+      font-size: 1.8rem;
+    }
   }
 `;
 
@@ -49,7 +62,7 @@ const Search = () => {
   const searchHandler = (e) => {
     setSearchInput(e.target.value);
   };
-  
+
   return (
     <Form>
       <SearchInput

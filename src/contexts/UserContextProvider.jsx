@@ -8,7 +8,6 @@ export const UserContext = createContext({
 
 const UserContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-
   useEffect(() => {
     const unSubscribe = onAuthStateChangedListener((user) => {
       setCurrentUser(user);

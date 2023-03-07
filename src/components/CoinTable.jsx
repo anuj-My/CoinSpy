@@ -1,12 +1,11 @@
 import { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { CoinList } from "../api/coinGeckoApi";
-import { CurrencyContext } from "../contexts/CurrencyContextProvider";
-
 import { SearchContext } from "../contexts/SearchContextProvider";
 import TableItem from "./TableItem";
 import Pagination from "./Pagination";
+import { CoinContext } from "../contexts/CoinContextProvider";
+import { Link } from "react-router-dom";
 
 const CoinTableContainer = styled.section`
   width: 100%;
@@ -17,6 +16,7 @@ const CoinTableContainer = styled.section`
   padding: 4rem 2rem;
   border-radius: 1rem;
 `;
+
 const TableHead = styled.div`
   display: flex;
   justify-content: space-between;
@@ -34,8 +34,7 @@ const TimeHead = styled.h4``;
 const MarketCapHead = styled.h4``;
 
 const CoinTable = () => {
-  const [coinList, setCoinList] = useState([]);
-  const { currency } = useContext(CurrencyContext);
+  const { coinList, getCoinList } = useContext(CoinContext);
   const { searchInput } = useContext(SearchContext);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -48,11 +47,6 @@ const CoinTable = () => {
     getCoinList();
     // eslint-disable-next-line
   }, []);
-
-  const getCoinList = async () => {
-    const { data } = await axios.get(CoinList(currency));
-    setCoinList(data);
-  };
 
   // eslint-disable-next-line
   const filteredCoins = coinList.filter((coin) => {
@@ -70,7 +64,11 @@ const CoinTable = () => {
       currentPage * itemsPerPage
     )
     .map((coin) => {
-      return <TableItem item={coin} key={coin.id} />;
+      return (
+        <Link to={`coins/${coin?.id}`} key={coin.id}>
+          <TableItem item={coin} />;
+        </Link>
+      );
     });
 
   return (

@@ -9,6 +9,11 @@ import Chart from "../components/Chart";
 import { HistoricalChart } from "../api/coinGeckoApi";
 import { chartDays } from "../data";
 import SelectedButton from "../components/SelectedButton";
+import Button from "../components/Button";
+import { UserContext } from "../contexts/UserContextProvider";
+import { WatchListContext } from "../contexts/WatchListContextProvider";
+import { doc, setDoc } from "firebase/firestore";
+import { firestoreDb } from "../api/firebase";
 
 const Container = styled.div`
   width: 90%;
@@ -35,7 +40,7 @@ const CoinInfoContainer = styled.div`
 const box = styled.div`
   border-radius: 1rem;
   background-color: blue;
-  height: 30rem;
+  height: 32rem;
   width: 100%;
   color: #f0f0ff;
   background-color: rgba(255, 255, 255, 0.172);
@@ -43,7 +48,7 @@ const box = styled.div`
   padding: 1.6rem;
 `;
 const ChartContainer = styled(box)`
-  height: 61rem;
+  height: 65rem;
   font-size: 2rem;
 `;
 
@@ -63,11 +68,14 @@ const CoinSummary = styled(box)`
 `;
 const CoinInfo = styled(box)``;
 
-const Left = styled.div``;
+const Left = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
 const ImageContainer = styled.div`
   width: 17rem;
   height: 17rem;
-  margin-bottom: 1rem;
 `;
 const Image = styled.img`
   border-radius: 1rem;
@@ -104,7 +112,9 @@ const SingleCoinContainer = () => {
   const { id } = useParams();
   const [coinDetail, setCoinDetail] = useState([]);
 
+  const { watchList } = useContext(WatchListContext);
   const { currency, code, symbol } = useContext(CurrencyContext);
+  const { currentUser } = useContext(UserContext);
 
   const [historicalData, setHistoricalData] = useState([]);
   // eslint-disable-next-line
@@ -121,6 +131,36 @@ const SingleCoinContainer = () => {
     // eslint-disable-next-line
   }, [id, days]);
 
+  const inWatchList = watchList.includes(coinDetail?.id);
+
+  const addToWatchlist = async () => {
+    const coinRef = doc(firestoreDb, "watchlist", currentUser.uid);
+
+    try {
+      await setDoc(coinRef, {
+        coins: watchList ? [...watchList, coinDetail?.id] : [coinDetail?.id],
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeFromWatchList = async () => {
+    const coinRef = doc(firestoreDb, "watchlist", currentUser.uid);
+
+    try {
+      await setDoc(
+        coinRef,
+        {
+          coins: watchList.filter((item) => item !== coinDetail?.id),
+        },
+        { merge: "true" }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getHistorialData = async () => {
     const { data } = await axios(HistoricalChart(id, days, currency));
 
@@ -131,7 +171,6 @@ const SingleCoinContainer = () => {
     const { data } = await axios.get(SingleCoin(id));
     setCoinDetail(data);
   };
-
   return (
     <Container>
       <h1>Coin Details</h1>
@@ -165,6 +204,14 @@ const SingleCoinContainer = () => {
                 <Image src={coinDetail?.image?.large} alt={coinDetail?.name} />
               </ImageContainer>
               <Name>{coinDetail?.name}</Name>
+              {currentUser && (
+                <Button
+                  title={
+                    inWatchList ? "Remove from Watchlist" : "Add to Watchlist"
+                  }
+                  onClick={inWatchList ? removeFromWatchList : addToWatchlist}
+                />
+              )}
             </Left>
             <Right>
               <MarketData>

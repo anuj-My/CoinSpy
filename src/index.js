@@ -6,6 +6,8 @@ import { BrowserRouter } from "react-router-dom";
 import CurrencyContextProvider from "./contexts/CurrencyContextProvider";
 import SearchContextProvider from "./contexts/SearchContextProvider";
 import UserContextProvider from "./contexts/UserContextProvider";
+import CoinContextProvider from "./contexts/CoinContextProvider";
+import WatchListContextProvider from "./contexts/WatchListContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -13,9 +15,13 @@ root.render(
     <BrowserRouter>
       <UserContextProvider>
         <CurrencyContextProvider>
-          <SearchContextProvider>
-            <App />
-          </SearchContextProvider>
+          <CoinContextProvider>
+            <SearchContextProvider>
+              <WatchListContextProvider>
+                <App />
+              </WatchListContextProvider>
+            </SearchContextProvider>
+          </CoinContextProvider>
         </CurrencyContextProvider>
       </UserContextProvider>
     </BrowserRouter>

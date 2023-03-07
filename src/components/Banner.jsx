@@ -22,6 +22,10 @@ const BannerContainer = styled.section`
   text-align: center;
   z-index: 1;
 
+  @media screen and (max-width: 780px) {
+    gap: 5rem;
+  }
+
   &::before {
     content: "";
     background-image: linear-gradient(
@@ -42,6 +46,14 @@ const BannerContainer = styled.section`
 const ShortNote = styled.div`
   color: #f9f8fa;
   width: 60%;
+
+  @media screen and (max-width: 1060px) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: 780px) {
+    width: 95%;
+  }
 `;
 
 const Title = styled.div`
@@ -66,6 +78,14 @@ const Desc = styled.div`
 
 const CarouselContainer = styled.div`
   width: 60%;
+
+  @media screen and (max-width: 1060px) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: 780px) {
+    width: 95%;
+  }
 `;
 
 const Banner = () => {
