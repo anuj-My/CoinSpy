@@ -25,7 +25,7 @@ const SearchInput = styled.input`
   color: #cac7ff;
 
   @media screen and (max-width: 550px) {
-    padding: 1.8rem 1.4rem;
+    padding: 1.4rem 0.6rem;
   }
 
   &::placeholder {
@@ -41,8 +41,8 @@ const Button = styled.button`
   cursor: pointer;
 
   @media screen and (max-width: 550px) {
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
   }
 
   svg {
@@ -50,7 +50,7 @@ const Button = styled.button`
     color: #cac7ff;
 
     @media screen and (max-width: 550px) {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
   }
 `;
