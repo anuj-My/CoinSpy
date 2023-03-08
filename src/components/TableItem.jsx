@@ -27,9 +27,6 @@ const CoinListItem = styled.div`
     margin-bottom: 3px;
     cursor: pointer;
   }
-  &:not(:last-child) {
-    margin-bottom: 1.5rem;
-  }
 `;
 
 const Coin = styled.span`

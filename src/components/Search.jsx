@@ -14,6 +14,10 @@ const Form = styled.form`
   padding: 6px 2rem;
   backdrop-filter: blur(4px) saturate(180%);
   margin: 2rem 0;
+
+  @media screen and (max-width: 780px) {
+    padding: 6px 1rem;
+  }
 `;
 const SearchInput = styled.input`
   background-color: transparent;
@@ -23,6 +27,7 @@ const SearchInput = styled.input`
   padding: 2.4rem 2rem;
   font-size: 2rem;
   color: #cac7ff;
+  width: 100%;
 
   @media screen and (max-width: 550px) {
     padding: 1.4rem 0.6rem;

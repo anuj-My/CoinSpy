@@ -59,6 +59,10 @@ const Watchlist = styled.div`
   margin-top: 5rem;
   padding: 2rem;
   border-radius: 1rem;
+
+  @media screen and (max-width: 780px) {
+    padding: 1rem;
+  }
 `;
 const Head = styled.h3`
   font-weight: 500;
@@ -90,6 +94,14 @@ const List = styled.div``;
 const Row = styled.div`
   display: flex;
   gap: 1rem;
+
+  @media screen and (max-width: 780px) {
+    gap: 0.5rem;
+  }
+
+  @media screen and (max-width: 550px) {
+    flex-direction: column;
+  }
 
   a {
     flex-basis: 100%;
