@@ -19,8 +19,24 @@ const Container = styled.div`
   width: 90%;
   margin: auto;
 
-  @media screen and (max-width: 650px) {
+  @media screen and (max-width: 550px) {
     width: 99%;
+  }
+`;
+
+const Header = styled.header`
+  background-color: #cac7ff27;
+  font-size: 3rem;
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  border-radius: 1rem;
+
+  @media screen and (max-width: 550px) {
+    font-size: 2rem;
+    letter-spacing: 1px;
   }
 `;
 
@@ -38,6 +54,10 @@ const ContainerInfo = styled.div`
   @media screen and (max-width: 1370px) {
     grid-template-columns: 100%;
   }
+
+  @media screen and (max-width: 550px) {
+    padding: 4rem 0.5rem;
+  }
 `;
 
 const CoinInfoContainer = styled.div`
@@ -54,14 +74,26 @@ const box = styled.div`
   background-color: rgba(255, 255, 255, 0.172);
   backdrop-filter: blur(1rem);
   padding: 1.6rem;
+
+  @media screen and (max-width: 550px) {
+    padding: 1.6rem 1rem;
+  }
 `;
 const ChartContainer = styled(box)`
   height: 65rem;
   font-size: 2rem;
+
+  @media screen and (max-width: 1370px) {
+    height: 50rem;
+  }
 `;
 
 const ChartWrapper = styled.div`
   height: 85%;
+
+  @media screen and (max-width: 550px) {
+    height: 88%;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -73,6 +105,10 @@ const ButtonContainer = styled.div`
 const CoinSummary = styled(box)`
   display: flex;
   gap: 2rem;
+
+  @media screen and (max-width: 550px) {
+    gap: 1rem;
+  }
 `;
 const CoinInfo = styled(box)``;
 
@@ -80,10 +116,16 @@ const Left = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  align-items: center;
 `;
 const ImageContainer = styled.div`
   width: 17rem;
   height: 17rem;
+
+  @media screen and (max-width: 550px) {
+    width: 9rem;
+    height: 9rem;
+  }
 `;
 const Image = styled.img`
   border-radius: 1rem;
@@ -92,12 +134,20 @@ const Image = styled.img`
 `;
 const Name = styled.h1`
   text-align: center;
+
+  @media screen and (max-width: 550px) {
+    font-size: 2.4rem;
+  }
 `;
 
 const Right = styled.div``;
 
 const MarketData = styled.h3`
   font-size: 1.8rem;
+
+  @media screen and (max-width: 550px) {
+    font-size: 1.6rem;
+  }
   &:not(:last-child) {
     margin-bottom: 1rem;
   }
@@ -181,7 +231,7 @@ const SingleCoinContainer = () => {
   };
   return (
     <Container>
-      <h1>Coin Details</h1>
+      <Header>{coinDetail?.id} Details</Header>
 
       <ContainerInfo>
         <ChartContainer>
