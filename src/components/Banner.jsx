@@ -61,6 +61,9 @@ const Title = styled.div`
   text-decoration: none;
   letter-spacing: 0.6rem;
   font-size: 6rem;
+  @media screen and (max-width: 780px) {
+    font-size: 3.6rem;
+  }
   span {
     color: #6e46ff;
     font-weight: bold;
@@ -70,10 +73,18 @@ const Title = styled.div`
 const Tagline = styled.div`
   margin: 2rem 0 1rem 0;
   font-size: 2.4rem;
+
+  @media screen and (max-width: 780px) {
+    font-size: 1.8rem;
+  }
 `;
 const Desc = styled.div`
   opacity: 0.8;
   font-size: 1.6rem;
+
+  @media screen and (max-width: 780px) {
+    font-size: 1.4rem;
+  }
 `;
 
 const CarouselContainer = styled.div`

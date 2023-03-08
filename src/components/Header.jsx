@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { CurrencyContext } from "../contexts/CurrencyContextProvider";
 import Logo from "./Logo";
 import NavigationLinks from "./NavigationLinks";
@@ -20,18 +20,42 @@ const HeaderContainer = styled.header`
   align-items: center;
   z-index: 10;
   box-shadow: 0px 0.5rem 1rem #1d1d1d;
+
+  @media screen and (max-width: 780px) {
+    padding: 0 1rem;
+  }
 `;
 
 const LinksContainer = styled.div`
   display: flex;
-  gap: 5rem;
+  gap: 2rem;
   align-items: center;
+
+  @media screen and (max-width: 780px) {
+    transition: all 0.9s cubic-bezier(0.075, 0.82, 0.165, 1);
+    width: 30rem;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #424b54;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+  }
 `;
 
 const CurrencyAndLogin = styled.div`
   display: flex;
   gap: 2rem;
   align-items: center;
+
+  @media screen and (max-width: 780px) {
+    flex-direction: column;
+    gap: 3rem;
+    align-items: flex-start;
+  }
 `;
 const CurrencyContainer = styled.div``;
 const SelectCurrency = styled.select`
@@ -83,40 +107,101 @@ const LoginContainer = styled.div`
   }
 `;
 
+const Hamburger = styled.div`
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  top: 37px;
+  right: 40px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  z-index: 5;
+
+  @media screen and (min-width: 780px) {
+    display: none;
+  }
+`;
+
+const Line = styled.div`
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  transition: all 0.8s;
+`;
+
 const Header = () => {
   const { currency, setCurrency } = useContext(CurrencyContext);
   const { currentUser } = useContext(UserContext);
+  const [toggle, setToggle] = useState(false);
+  const menuRef = useRef();
+  const btnRef = useRef();
+  const line1 = btnRef?.current?.children[0];
+  const line2 = btnRef?.current?.children[1];
+  const line3 = btnRef?.current?.children[2];
+
+  if (toggle) {
+    menuRef.current.style.right = "0";
+
+    if (line1 && line2 && line3) {
+      line1.style = `transform: rotateZ(-405deg) translate(-8px , 6px )`;
+      line2.style.opacity = `0`;
+      line3.style = `transform: rotateZ(405deg) translate(-8px , -6px )`;
+    }
+  } else {
+    if (line1 && line2 && line3) {
+      line1.style = `transform : none`;
+      line2.style.opacity = `1`;
+      line3.style = `transform : none`;
+    }
+    if (menuRef.current) {
+      menuRef.current.style.right = "-30rem";
+    }
+  }
 
   return (
     <HeaderContainer>
-      <LinksContainer>
-        <Logo title="CoinSpy" />
+      <Logo title="CoinSpy" />
+      <LinksContainer ref={menuRef}>
         <NavigationLinks />
+        <CurrencyAndLogin>
+          <LoginContainer>
+            {currentUser ? (
+              <span onClick={SignOutUser}>Sign Out</span>
+            ) : (
+              <CustomLink
+                data={{
+                  path: "/auth",
+                  title: "Sign Up",
+                }}
+              />
+            )}
+          </LoginContainer>
+          <CurrencyContainer>
+            <SelectCurrency
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+            >
+              <CurrencyOption value={"USD"}>USD</CurrencyOption>
+              <CurrencyOption value={"INR"}>INR</CurrencyOption>
+              <CurrencyOption value={"EUR"}>EUR</CurrencyOption>
+            </SelectCurrency>
+          </CurrencyContainer>
+        </CurrencyAndLogin>
       </LinksContainer>
-      <CurrencyAndLogin>
-        <CurrencyContainer>
-          <SelectCurrency
-            value={currency}
-            onChange={(e) => setCurrency(e.target.value)}
-          >
-            <CurrencyOption value={"USD"}>USD</CurrencyOption>
-            <CurrencyOption value={"INR"}>INR</CurrencyOption>
-            <CurrencyOption value={"EUR"}>EUR</CurrencyOption>
-          </SelectCurrency>
-        </CurrencyContainer>
-        <LoginContainer>
-          {currentUser ? (
-            <span onClick={SignOutUser}>Sign Out</span>
-          ) : (
-            <CustomLink
-              data={{
-                path: "/auth",
-                title: "Sign Up",
-              }}
-            />
-          )}
-        </LoginContainer>
-      </CurrencyAndLogin>
+
+      <Hamburger onClick={() => setToggle(!toggle)} ref={btnRef}>
+        <Line></Line>
+        <Line></Line>
+        <Line></Line>
+      </Hamburger>
+      {/* <button
+        style={{ position: "fixed", top: "30px", right: "20px" }}
+        
+      >
+        toggle
+      </button> */}
     </HeaderContainer>
   );
 };

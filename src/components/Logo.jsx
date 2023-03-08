@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 
 const LogoContainer = styled.div`
   font-size: 4rem;
+
+  @media screen and (max-width: 780px) {
+    font-size: 3rem;
+  }
 `;
 
 const CustomLink = styled(Link)`

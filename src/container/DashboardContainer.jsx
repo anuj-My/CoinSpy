@@ -147,7 +147,7 @@ const DashboardContainer = () => {
               if (watchList.includes(item.id)) {
                 return (
                   <Row key={item.id}>
-                    <Link to={`coins/${item?.id}`}>
+                    <Link to={`/coins/${item?.id}`}>
                       <TableItem item={item} />
                     </Link>
 
