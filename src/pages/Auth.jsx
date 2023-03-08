@@ -17,6 +17,22 @@ const SignUpAndSignIn = styled.div`
   font-size: 1.6rem;
   border-radius: 1rem;
   padding-bottom: 4rem;
+
+  @media screen and (max-width: 1300px) {
+    width: 50%;
+  }
+
+  @media screen and (max-width: 1060px) {
+    width: 60%;
+  }
+
+  @media screen and (max-width: 780px) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: 550px) {
+    width: 98%;
+  }
 `;
 
 const BtnContainer = styled.div`

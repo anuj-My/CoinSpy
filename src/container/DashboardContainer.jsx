@@ -14,12 +14,21 @@ import { WatchListContext } from "../contexts/WatchListContextProvider";
 const Container = styled.section`
   width: 85%;
   margin: 13rem auto;
+
+  @media screen and (max-width: 780px) {
+    width: 98%;
+  }
 `;
 
 const Profile = styled.div`
   display: flex;
   gap: 4rem;
   align-items: center;
+
+  @media screen and (max-width: 1060px) {
+    flex-direction: column;
+    gap: 3rem;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -30,13 +39,19 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  object-fit: cover;
 `;
 
 const UserName = styled.h1`
-  font-size: 5rem;
+  font-size: 4rem;
   color: white;
   text-transform: uppercase;
   letter-spacing: 2px;
+  text-align: center;
+
+  @media screen and (max-width: 780px) {
+    font-size: 3rem;
+  }
 `;
 
 const Watchlist = styled.div`

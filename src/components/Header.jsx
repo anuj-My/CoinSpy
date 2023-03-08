@@ -33,7 +33,7 @@ const LinksContainer = styled.div`
 
   @media screen and (max-width: 780px) {
     transition: all 0.9s cubic-bezier(0.075, 0.82, 0.165, 1);
-    width: 30rem;
+    width: 23rem;
     min-height: 100vh;
     position: fixed;
     top: 0;
@@ -108,11 +108,11 @@ const LoginContainer = styled.div`
 `;
 
 const Hamburger = styled.div`
-  width: 30px;
-  height: 30px;
+  width: 3rem;
+  height: 3rem;
   position: fixed;
-  top: 37px;
-  right: 40px;
+  top: 3.7rem;
+  right: 2rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -156,7 +156,7 @@ const Header = () => {
       line3.style = `transform : none`;
     }
     if (menuRef.current) {
-      menuRef.current.style.right = "-30rem";
+      menuRef.current.style.right = "-23rem";
     }
   }
 
