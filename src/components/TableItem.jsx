@@ -16,7 +16,11 @@ const CoinListItem = styled.div`
   border-radius: 1rem;
   padding: 1.6rem 2rem;
   cursor: pointer;
-  /* text-align: left; */
+
+  @media screen and (max-width: 550px) {
+    padding: 1.4rem 1rem;
+    font-size: 1.4rem;
+  }
 
   &:hover {
     transform: scale(1.1);
@@ -30,24 +34,37 @@ const CoinListItem = styled.div`
 
 const Coin = styled.span`
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
+  align-items: center;
+  @media screen and (max-width: 550px) {
+    gap: 0.8rem;
+  }
 `;
 
 const CoinImage = styled.img`
   width: 5rem;
   height: 5rem;
+
+  @media screen and (max-width: 550px) {
+    width: 3rem;
+    height: 3rem;
+  }
 `;
 
 const NameAndSymbol = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 `;
 const Name = styled.span``;
 const Symbol = styled.span`
   font-size: 2rem;
   font-weight: bold;
   text-transform: uppercase;
+
+  @media screen and (max-width: 550px) {
+    font-size: 1.6rem;
+  }
 `;
 
 const Price = styled.span``;

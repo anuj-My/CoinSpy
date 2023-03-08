@@ -28,8 +28,16 @@ const SearchInput = styled.input`
     padding: 1.4rem 0.6rem;
   }
 
+  @media screen and (max-width: 780px) {
+    padding: 1.8rem 1.4rem;
+  }
+
   &::placeholder {
     color: #cac7ff;
+
+    @media screen and (max-width: 550px) {
+      font-size: 1.6rem;
+    }
   }
 `;
 const Button = styled.button`
@@ -45,12 +53,21 @@ const Button = styled.button`
     height: 3rem;
   }
 
+  @media screen and (max-width: 780px) {
+    width: 4rem;
+    height: 4rem;
+  }
+
   svg {
     font-size: 2.5rem;
     color: #cac7ff;
 
     @media screen and (max-width: 550px) {
       font-size: 1.6rem;
+    }
+
+    @media screen and (max-width: 780px) {
+      font-size: 1.8rem;
     }
   }
 `;

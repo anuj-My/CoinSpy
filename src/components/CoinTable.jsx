@@ -15,6 +15,10 @@ const CoinTableContainer = styled.section`
   background-color: #cac7ff27;
   padding: 4rem 2rem;
   border-radius: 1rem;
+
+  @media screen and (max-width: 550px) {
+    padding: 4rem 0.4rem;
+  }
 `;
 
 const TableHead = styled.div`
@@ -26,12 +30,30 @@ const TableHead = styled.div`
   font-size: 1.6rem;
   border-radius: 1rem;
   padding: 1.6rem 2rem;
-  /* text-align: left; */
+  @media screen and (max-width: 550px) {
+    padding: 1.6rem 1rem;
+  }
 `;
-const CoinHead = styled.h4``;
-const PriceHead = styled.h4``;
-const TimeHead = styled.h4``;
-const MarketCapHead = styled.h4``;
+const CoinHead = styled.h4`
+  @media screen and (max-width: 550px) {
+    font-size: 1.4rem;
+  }
+`;
+const PriceHead = styled.h4`
+  @media screen and (max-width: 550px) {
+    font-size: 1.4rem;
+  }
+`;
+const TimeHead = styled.h4`
+  @media screen and (max-width: 550px) {
+    font-size: 1.4rem;
+  }
+`;
+const MarketCapHead = styled.h4`
+  @media screen and (max-width: 550px) {
+    font-size: 1.4rem;
+  }
+`;
 
 const CoinTable = () => {
   const { coinList, getCoinList } = useContext(CoinContext);

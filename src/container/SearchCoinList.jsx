@@ -9,6 +9,10 @@ const Container = styled.section`
   @media screen and (max-width: 780px) {
     width: 95%;
   }
+
+  @media screen and (max-width: 550px) {
+    width: 99%;
+  }
 `;
 
 const Title = styled.h1`
