@@ -14,6 +14,7 @@ const Btn = styled.button`
   border: none;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   svg {
