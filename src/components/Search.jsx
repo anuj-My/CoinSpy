@@ -14,6 +14,7 @@ const Form = styled.form`
   padding: 6px 2rem;
   backdrop-filter: blur(4px) saturate(180%);
   margin: 2rem 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
   @media screen and (max-width: 780px) {
     padding: 6px 1rem;

@@ -16,6 +16,7 @@ const CoinListItem = styled.div`
   border-radius: 1rem;
   padding: 1.6rem 2rem;
   cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
   @media screen and (max-width: 550px) {
     padding: 1.4rem 1rem;

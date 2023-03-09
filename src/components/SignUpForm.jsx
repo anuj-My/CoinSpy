@@ -1,16 +1,23 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { FcGoogle } from "react-icons/fc";
 import Button from "./Button";
 import FormInput from "./FormInput";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../api/firebase";
+import { signInWithGoogle } from "./SignInForm";
 
 const Container = styled.div``;
 const Form = styled.form`
   width: 90%;
   margin: auto;
+`;
+
+const BtnContainer = styled.div`
+  display: flex;
+  gap: 1rem;
 `;
 
 const SignUpForm = () => {
@@ -93,8 +100,19 @@ const SignUpForm = () => {
           onChange={changeHandler}
           required
         />
-
-        <Button title="Sign Up" type="submit" />
+        <BtnContainer>
+          <Button title="Sign Up" type="submit" />
+          <Button
+            title="SignIn with Google"
+            icon={<FcGoogle />}
+            style={{
+              color: "black",
+              backgroundColor: "white",
+            }}
+            type="button"
+            onClick={signInWithGoogle}
+          />
+        </BtnContainer>
       </Form>
     </Container>
   );

@@ -2,6 +2,8 @@ import { useState } from "react";
 import styled from "styled-components";
 import FormInput from "./FormInput";
 import Button from "./Button";
+import { FcGoogle } from "react-icons/fc";
+
 import {
   googleSignInWithPopup,
   createUserDocumentFromAuth,
@@ -15,10 +17,15 @@ const Form = styled.form`
 `;
 
 const BtnContainer = styled.div`
-  button:not(:last-child) {
-    margin-right: 1rem;
-  }
+  display: flex;
+  gap: 1rem;
 `;
+
+export const signInWithGoogle = async () => {
+  const { user } = await googleSignInWithPopup();
+  await createUserDocumentFromAuth(user);
+};
+
 const SignInForm = () => {
   const defaultInputs = {
     email: "",
@@ -44,11 +51,6 @@ const SignInForm = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-  };
-
-  const signInWithGoogle = async () => {
-    const { user } = await googleSignInWithPopup();
-    await createUserDocumentFromAuth(user);
   };
 
   const signInWithEmailAndPassword = async () => {
@@ -97,6 +99,11 @@ const SignInForm = () => {
           />
           <Button
             title="SignIn With Google"
+            icon={<FcGoogle />}
+            style={{
+              color: "black",
+              backgroundColor: "white",
+            }}
             type="button"
             onClick={signInWithGoogle}
           />

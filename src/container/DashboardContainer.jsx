@@ -45,8 +45,9 @@ const Image = styled.img`
 const UserName = styled.h1`
   font-size: 4rem;
   color: white;
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: 2px;
+  font-weight: 500;
   text-align: center;
 
   @media screen and (max-width: 780px) {
@@ -55,7 +56,7 @@ const UserName = styled.h1`
 `;
 
 const Watchlist = styled.div`
-  background-color: black;
+  background-color: #cac7ff27;
   margin-top: 5rem;
   padding: 2rem;
   border-radius: 1rem;
@@ -189,6 +190,7 @@ const DashboardContainer = () => {
                       onClick={() => removeFromWatchList(item)}
                       style={{
                         marginBottom: "1.5rem",
+                        backgroundColor: "red",
                       }}
                     />
                   </Row>

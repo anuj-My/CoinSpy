@@ -12,6 +12,7 @@ const Container = styled.div`
   color: #f0f0ff;
   background-color: rgba(255, 255, 255, 0.182);
   backdrop-filter: blur(4px);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `;
 
 const Left = styled.div`

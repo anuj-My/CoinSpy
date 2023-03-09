@@ -19,8 +19,7 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   z-index: 10;
-  box-shadow: 0px 0.5rem 1rem #1d1d1d;
-
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   @media screen and (max-width: 780px) {
     padding: 0 1rem;
   }
@@ -168,7 +167,14 @@ const Header = () => {
         <CurrencyAndLogin>
           <LoginContainer>
             {currentUser ? (
-              <span onClick={SignOutUser}>Sign Out</span>
+              <span
+                onClick={SignOutUser}
+                style={{
+                  cursor: "pointer",
+                }}
+              >
+                Sign Out
+              </span>
             ) : (
               <CustomLink
                 data={{

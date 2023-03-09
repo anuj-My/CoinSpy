@@ -36,6 +36,7 @@ const ButtonLeft = styled.button`
   &:hover {
     color: #6e46ff;
     background-color: #faf8f9;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
   svg {
     font-size: 2.5rem;
@@ -67,6 +68,7 @@ const ButtonRight = styled.button`
   &:hover {
     color: #6e46ff;
     background-color: #faf8f9;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
   svg {
     font-size: 2.5rem;
