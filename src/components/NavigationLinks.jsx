@@ -4,13 +4,14 @@ import { linksData } from "../data";
 const NavigationLinksContainer = styled.div`
   font-size: 1.6rem;
   display: flex;
-  gap: 2rem;
+  gap: 0.5rem;
 
   @media screen and (max-width: 780px) {
     flex-direction: column;
-    gap: 3rem;
+    gap: 1rem;
   }
 `;
+
 const NavigationLinks = () => {
   const linklist = linksData.map((data, index) => {
     return <CustomLink key={index} data={data} />;

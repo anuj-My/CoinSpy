@@ -27,7 +27,7 @@ const HeaderContainer = styled.header`
 
 const LinksContainer = styled.div`
   display: flex;
-  gap: 2rem;
+  gap: 0.5rem;
   align-items: center;
 
   @media screen and (max-width: 780px) {
@@ -41,7 +41,7 @@ const LinksContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 3rem;
+    gap: 1rem;
   }
 `;
 
@@ -101,9 +101,7 @@ const SelectCurrency = styled.select`
 const CurrencyOption = styled.option``;
 const LoginContainer = styled.div`
   font-size: 1.6rem;
-  a:not(:last-child) {
-    margin-right: 2rem;
-  }
+  text-align: left;
 `;
 
 const Hamburger = styled.div`
