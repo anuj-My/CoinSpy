@@ -12,6 +12,7 @@ const Container = styled.section`
 
   @media screen and (max-width: 550px) {
     width: 99%;
+    padding: 0 0.5rem;
   }
 `;
 
@@ -19,7 +20,7 @@ const Title = styled.h1`
   font-size: 3rem;
   font-weight: 500;
   @media screen and (max-width: 550px) {
-    font-size: 2.4rem;
+    font-size: 2rem;
   }
 `;
 

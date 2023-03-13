@@ -14,7 +14,7 @@ const ExChangesHeading = styled.h1`
   margin-bottom: 2rem;
 
   @media screen and (max-width: 550px) {
-    font-size: 2.6rem;
+    font-size: 2rem;
   }
 `;
 

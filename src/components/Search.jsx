@@ -30,19 +30,18 @@ const SearchInput = styled.input`
   color: #cac7ff;
   width: 100%;
 
-  @media screen and (max-width: 550px) {
-    padding: 1.4rem 0.6rem;
-  }
-
   @media screen and (max-width: 780px) {
     padding: 1.8rem 1.4rem;
+  }
+  @media screen and (max-width: 550px) {
+    padding: 1.2rem 0.6rem;
   }
 
   &::placeholder {
     color: #cac7ff;
 
     @media screen and (max-width: 550px) {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
     }
   }
 `;
@@ -54,34 +53,32 @@ const Button = styled.button`
   background-color: #6e46ff;
   cursor: pointer;
 
-  @media screen and (max-width: 550px) {
-    width: 3rem;
-    height: 3rem;
-  }
-
   @media screen and (max-width: 780px) {
     width: 4rem;
     height: 4rem;
+  }
+
+  @media screen and (max-width: 550px) {
+    width: 3rem;
+    height: 3rem;
   }
 
   svg {
     font-size: 2.5rem;
     color: #cac7ff;
 
-    @media screen and (max-width: 550px) {
-      font-size: 1.6rem;
-    }
-
     @media screen and (max-width: 780px) {
       font-size: 1.8rem;
+    }
+
+    @media screen and (max-width: 550px) {
+      font-size: 1.5rem;
     }
   }
 `;
 
 const Search = () => {
   const { searchInput, setSearchInput } = useContext(SearchContext);
-
-  console.log(searchInput);
   const searchHandler = (e) => {
     setSearchInput(e.target.value);
   };

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import styled from "styled-components";
 import { FcGoogle } from "react-icons/fc";
 import Button from "./Button";
@@ -6,6 +8,7 @@ import FormInput from "./FormInput";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
+  updateUserProfile,
 } from "../api/firebase";
 import { signInWithGoogle } from "./SignInForm";
 
@@ -21,6 +24,8 @@ const BtnContainer = styled.div`
 `;
 
 const SignUpForm = () => {
+  const navigate = useNavigate();
+
   const defaultInput = {
     displayName: "",
     email: "",
@@ -55,7 +60,12 @@ const SignUpForm = () => {
         password
       );
 
+      await updateUserProfile({
+        displayName,
+      });
+
       await createUserDocumentFromAuth(user, { displayName });
+      navigate("/dashboard");
       resetFormFields();
     } catch (err) {
       if (err.code === "auth/email-already-in-use") {

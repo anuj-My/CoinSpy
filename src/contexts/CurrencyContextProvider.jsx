@@ -10,23 +10,20 @@ const CurrencyContextProvider = ({ children }) => {
   const value = { currency, code, setCurrency, symbol };
 
   useEffect(() => {
-    // switch (key) {
-    //   case value:
-
-    //     break;
-
-    //   default:
-    //     break;
-    // }
-    if (currency === "INR") {
-      setCode("en-IN");
-      setSymbol("₹");
-    } else if (currency === "USD") {
-      setCode("en-US");
-      setSymbol("$");
-    } else if (currency === "EUR") {
-      setCode("en-EU");
-      setSymbol("Є");
+    switch (currency) {
+      case "INR":
+        setCode("en-IN");
+        setSymbol("₹");
+        break;
+      case "USD":
+        setCode("en-US");
+        setSymbol("$");
+        break;
+      case "EUR":
+        setCode("en-EU");
+        setSymbol("Є");
+        break;
+      default:
     }
   }, [currency]);
 

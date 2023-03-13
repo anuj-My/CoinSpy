@@ -9,6 +9,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  updateProfile,
 } from "firebase/auth";
 
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -34,6 +35,7 @@ const googleProvider = new GoogleAuthProvider();
 
 // auth
 export const auth = getAuth();
+console.log(auth);
 
 // ----------Database----------
 
@@ -55,10 +57,7 @@ export const createUserDocumentFromAuth = async (
   if (!userAuth) return;
 
   const userDocRef = doc(firestoreDb, "users", userAuth.uid);
-  console.log(userDocRef);
-
   const userSnapshot = await getDoc(userDocRef);
-  console.log(userSnapshot.exists());
 
   // if  user data does not exists, create document
   if (!userSnapshot.exists()) {
@@ -73,7 +72,9 @@ export const createUserDocumentFromAuth = async (
         createdAt,
         ...additionalInfo,
       });
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return userDocRef;
@@ -90,12 +91,16 @@ export const SignInAuthWithEmailAndPassword = async (email, password) => {
   return await signInWithEmailAndPassword(auth, email, password);
 };
 
+export const updateUserProfile = async (obj) => {
+  if (!obj) return;
+  return await updateProfile(auth.currentUser, obj);
+};
+
 // Sign out
 
 export const SignOutUser = async () => {
   try {
-    const res = await signOut(auth);
-    console.log(res);
+    await signOut(auth);
   } catch (error) {
     console.log(error.message);
   }

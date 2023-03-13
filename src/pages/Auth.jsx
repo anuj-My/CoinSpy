@@ -18,6 +18,10 @@ const SignUpAndSignIn = styled.div`
   border-radius: 1rem;
   padding-bottom: 4rem;
 
+  @media screen and (min-width: 1600px) {
+    width: 30%;
+  }
+
   @media screen and (max-width: 1300px) {
     width: 50%;
   }

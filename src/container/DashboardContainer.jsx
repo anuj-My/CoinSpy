@@ -147,22 +147,20 @@ const DashboardContainer = () => {
         <ImageContainer>
           <Image
             src={
-              currentUser.photoURL ||
+              currentUser?.photoURL ||
               "https://cdn.pixabay.com/photo/2019/08/11/18/59/icon-4399701_1280.png"
             }
-            alt={currentUser.displayName || currentUser.email}
+            alt={currentUser?.displayName}
           />
         </ImageContainer>
-        <UserName>
-          Welcome,{" "}
-          {currentUser?.displayName ||
-            currentUser.email.replace("@gmail.com", "")}
-        </UserName>
+        {currentUser && (
+          <UserName>Welcome, {currentUser?.displayName}</UserName>
+        )}
       </Profile>
 
       <Watchlist>
         <Head>WatchList</Head>
-        {watchList.length ? (
+        {watchList?.length ? (
           <List>
             {/* <TableHead>
               <CoinHead>Coin</CoinHead>
@@ -171,7 +169,7 @@ const DashboardContainer = () => {
               <MarketCapHead>Market Cap</MarketCapHead>
             </TableHead> */}
 
-            {coinList.map((item) => {
+            {coinList?.map((item) => {
               if (watchList.includes(item.id)) {
                 return (
                   <Row key={item.id}>

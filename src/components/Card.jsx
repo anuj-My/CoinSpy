@@ -4,11 +4,10 @@ import { CurrencyContext } from "../contexts/CurrencyContextProvider";
 
 const Container = styled.div`
   display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
   border-radius: 1rem;
   padding: 1rem;
-  gap: 2rem;
-  width: 30rem;
-
   color: #f0f0ff;
   background-color: rgba(255, 255, 255, 0.182);
   backdrop-filter: blur(4px);
@@ -19,11 +18,14 @@ const Left = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  flex: 1;
 `;
 
 const ImageContainer = styled.div`
   width: 6rem;
   height: 6rem;
+
+  object-fit: cover;
 `;
 
 const Image = styled.img`
@@ -35,6 +37,7 @@ const Title = styled.span`
   font-weight: bold;
 `;
 const Right = styled.div`
+  flex: 2;
   div:not(:last-child) {
     margin-bottom: 0.5rem;
   }

@@ -23,6 +23,10 @@ const HeaderContainer = styled.header`
   @media screen and (max-width: 780px) {
     padding: 0 1rem;
   }
+
+  @media screen and (max-width: 550px) {
+    height: 7rem;
+  }
 `;
 
 const LinksContainer = styled.div`
@@ -118,6 +122,11 @@ const Hamburger = styled.div`
 
   @media screen and (min-width: 780px) {
     display: none;
+  }
+
+  @media screen and (max-width: 550px) {
+    top: 2rem;
+    transform: scale(0.8);
   }
 `;
 

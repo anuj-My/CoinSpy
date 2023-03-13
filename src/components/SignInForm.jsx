@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import FormInput from "./FormInput";
 import Button from "./Button";
@@ -24,9 +25,11 @@ const BtnContainer = styled.div`
 export const signInWithGoogle = async () => {
   const { user } = await googleSignInWithPopup();
   await createUserDocumentFromAuth(user);
+  // navigate()
 };
 
 const SignInForm = () => {
+  const navigate = useNavigate();
   const defaultInputs = {
     email: "",
     password: "",
@@ -56,6 +59,7 @@ const SignInForm = () => {
   const signInWithEmailAndPassword = async () => {
     try {
       await SignInAuthWithEmailAndPassword(email, password);
+      navigate('/dashboard');
       resetFormFields();
     } catch (error) {
       switch (error.code) {
