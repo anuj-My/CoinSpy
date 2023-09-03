@@ -40,6 +40,16 @@ To run Coinspy locally as a React web application, follow these steps:
    ```bash
    git clone https://github.com/anuj-My/CoinSpy.git
 
+2. Change into the project directory:
+
+   ```bash
+   cd coinspy
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+
 ## Authentication
 
 Coinspy uses Firebase Authentication to manage user accounts. Ensure that you have configured Firebase as described in the [Installation](#installation) section to enable user registration and login.
