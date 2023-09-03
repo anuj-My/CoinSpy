@@ -39,3 +39,49 @@ To run Coinspy locally as a React web application, follow these steps:
 
    ```bash
    git clone https://github.com/anuj-My/CoinSpy.git
+
+## Authentication
+
+Coinspy uses Firebase Authentication to manage user accounts. Ensure that you have configured Firebase as described in the [Installation](#installation) section to enable user registration and login.
+
+## Contributing
+
+We welcome contributions from the community to improve Coinspy. To contribute, follow these steps:
+
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature/new-feature`.
+3. Make your changes and commit them: `git commit -m 'Add new feature'`.
+4. Push to the branch: `git push origin feature/new-feature`.
+5. Submit a pull request.
+
+For more information on contributing, please read our [Contributing Guidelines](CONTRIBUTING.md).
+
+## License
+
+This project is licensed under the MIT License. For details, see the [LICENSE](LICENSE) file.
+
+## Acknowledgments
+
+We would like to express our gratitude to the open-source community and the following libraries and frameworks for making Coinspy possible:
+
+- [React](https://reactjs.org/)
+- [Firebase](https://firebase.google.com/)
+- [CoinGecko API](https://coingecko.com/)
+
+## Contact
+
+If you have any questions, feedback, or need assistance, please feel free to contact us:
+
+- Email: [your.email@example.com](mailto:your.email@example.com)
+- GitHub Issues: [Project Issues](https://github.com/yourusername/coinspy/issues)
+
+## Stay Connected
+
+Stay up-to-date with the latest Coinspy news and updates:
+
+- Follow us on Twitter: [@CoinspyApp](https://twitter.com/CoinspyApp)
+- Visit our website: [https://www.coinspyapp.com](https://www.coinspyapp.com)
+
+---
+
+Thank you for choosing Coinspy! We hope this app simplifies your cryptocurrency tracking and portfolio management. Happy investing!
