@@ -82,7 +82,7 @@ We would like to express our gratitude to the open-source community and the foll
 
 If you have any questions, feedback, or need assistance, please feel free to contact us:
 
-- Email: [your.email@example.com](mailto:your.email@example.com)
+- Email: [your.email@example.com](mailto:anuj89806@gmail.com)
 - GitHub Issues: [Project Issues](https://github.com/yourusername/coinspy/issues)
 
 ## Stay Connected
