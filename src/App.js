@@ -1,4 +1,5 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
+import { RiseLoader } from "react-spinners";
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { UserContext } from "./contexts/UserContextProvider";
@@ -11,6 +12,13 @@ import Dashboard from "./pages/Dashboard";
 
 function App() {
   const { currentUser } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
 
   const ProtectDashboardRoute = ({ children }) => {
     if (!currentUser) {
@@ -26,7 +34,24 @@ function App() {
     return children;
   };
 
-  return (
+  return isLoading ? (
+    <div
+      style={{
+        width: "100%",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <RiseLoader
+        color="#6e46ff"
+        size={30}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    </div>
+  ) : (
     <div className="App">
       <Header />
       <Routes>

@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-import { CoinList } from "../api/coinGeckoApi";
 import { SearchContext } from "../contexts/SearchContextProvider";
 import TableItem from "./TableItem";
 import Pagination from "./Pagination";
@@ -93,7 +92,7 @@ const CoinTable = () => {
       );
     });
 
-  return (
+  return coinList.length > 0 ? (
     <CoinTableContainer>
       <TableHead>
         <CoinHead>Coin</CoinHead>
@@ -102,7 +101,7 @@ const CoinTable = () => {
         <MarketCapHead>Market Cap</MarketCapHead>
       </TableHead>
       {coinItemMap}
-      {CoinList.length > 0 && (
+      {coinItemMap.length === 10 && (
         <Pagination
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
@@ -110,6 +109,8 @@ const CoinTable = () => {
         />
       )}
     </CoinTableContainer>
+  ) : (
+    <div style={{ margin: "5rem 0", fontSize: "3rem" }}>Fetching...</div>
   );
 };
 
