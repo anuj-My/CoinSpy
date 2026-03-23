@@ -49,7 +49,7 @@ const CarouselItem = ({ coin }) => {
         <CoinInfo>
           <Symbol>{coin?.symbol}</Symbol>
           <PercentageChange isProfit={isProfit}>
-            {isProfit && "+"} {coin?.price_change_percentage_24h.toFixed(2)}%
+            {isProfit && "+"} {coin?.price_change_percentage_24h?.toFixed(2)}%
           </PercentageChange>
         </CoinInfo>
         <CurrentPrice>
