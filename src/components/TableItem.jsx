@@ -69,12 +69,12 @@ const Price = styled.span``;
 const Time = styled.span`
   color: ${({ isProfit }) => (isProfit ? "green" : "red")};
   font-weight: bolder;
-  /* font-size: 2rem; */
 `;
 const MarketCap = styled.span``;
 
 const TableItem = ({ item }) => {
   const isProfit = item?.price_change_percentage_24h >= 0;
+
   const { code, symbol } = useContext(CurrencyContext);
   return (
     <CoinListItem>
@@ -92,7 +92,7 @@ const TableItem = ({ item }) => {
       <Time isProfit={isProfit}>
         {isProfit ? <HiArrowTrendingUp /> : <HiArrowTrendingDown />}
         {isProfit && "+"}
-        {item?.price_change_percentage_24h.toFixed(2)}%
+        {item?.price_change_percentage_24h?.toFixed(2)}%
       </Time>
       <MarketCap>
         {symbol}
